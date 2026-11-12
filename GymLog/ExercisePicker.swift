@@ -1,7 +1,6 @@
 import SwiftUI
 
 // Pick one or more exercises from the catalog: search, filter by muscle and by equipment.
-// Selecting an exercise downloads its figure.
 struct ExercisePicker: View {
     @Environment(Store.self) private var store
     @Environment(\.dismiss) private var dismiss
@@ -108,7 +107,7 @@ struct ExercisePicker: View {
             }
         } label: {
             HStack(spacing: 12) {
-                ExerciseFigure(id: item.id, download: on).frame(width: 52)
+                ExerciseFigure(id: item.id).frame(width: 52)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.name).foregroundStyle(Color.primary)
                     Text(planned.map { "\(item.equipment) · in your routines, \($0.load)" } ?? item.equipment)

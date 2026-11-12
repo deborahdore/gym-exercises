@@ -3,7 +3,7 @@ import UIKit
 
 // The built-in exercise list. Only the names ship with the app: each figure lives in
 // catalog/images on GitHub (drawn by catalog/figures.py) and is downloaded the first time
-// its exercise is selected, then kept on the device.
+// it is shown, then kept on the device.
 struct CatalogExercise: Identifiable, Hashable {
     let id: String          // also the image file name
     let name: String
@@ -86,13 +86,12 @@ let catalog: [CatalogExercise] = [
     x("mountain_climber", "Mountain Climber", "Core", "Bodyweight", 30),
 ]
 
-// Reads a figure from the device, or fetches it from GitHub when `download` is set.
-func figure(_ id: String, download: Bool) async -> UIImage? {
+// Reads a figure from the device, or fetches it from GitHub the first time.
+func figure(_ id: String) async -> UIImage? {
     let folder = URL.applicationSupportDirectory.appending(path: "figures")
     let file = folder.appending(path: "\(id).png")
     if let data = try? Data(contentsOf: file) { return UIImage(data: data) }
-    guard download,
-          let url = URL(string: "https://raw.githubusercontent.com/deborahdore/gym-exercises/main/catalog/images/\(id).png"),
+    guard let url = URL(string: "https://raw.githubusercontent.com/deborahdore/gym-exercises/main/catalog/images/\(id).png"),
           let (data, response) = try? await URLSession.shared.data(from: url),
           (response as? HTTPURLResponse)?.statusCode == 200,
           let image = UIImage(data: data) else { return nil }
@@ -105,7 +104,6 @@ func figure(_ id: String, download: Bool) async -> UIImage? {
 // so the tile keeps the same colour in dark mode.
 struct ExerciseFigure: View {
     var id: String?
-    var download = true
     @State private var image: UIImage?
 
     var body: some View {
@@ -120,9 +118,9 @@ struct ExerciseFigure: View {
         .aspectRatio(1, contentMode: .fit)
         .clipShape(.rect(cornerRadius: 10))
         .accessibilityHidden(true)
-        .task(id: "\(id ?? "") \(download)") {
+        .task(id: id) {
             guard let id else { image = nil; return }
-            image = await figure(id, download: download)
+            image = await figure(id)
         }
     }
 }

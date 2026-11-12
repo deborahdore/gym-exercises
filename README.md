@@ -13,7 +13,7 @@ app to run the workout (phone stays in the locker) and a programmable rest timer
   weights, bodyweight); several can be added at once, and custom ones are still possible.
   Only the names ship with the app. Each exercise has a small figure in `catalog/images`,
   which the app downloads from this repository (raw.githubusercontent.com, so the repository
-  must be public) the first time the exercise is selected, and then keeps on the device.
+  must be public) the first time the figure is shown, and then keeps on the device.
   The figures are drawn by `python3 catalog/figures.py` (needs Pillow); to add an exercise,
   add a pose there and a line in `Catalog.swift` with the same id.
 - **Apple Watch** (`GymLogWatch/`): pick a routine (today's is listed first), then for each
