@@ -8,15 +8,26 @@ struct HistoryView: View {
         // One row per exercise, most recently trained first.
         let groups = Dictionary(grouping: store.data.log.sorted { $0.date < $1.date }, by: \.exerciseID).values
             .sorted { $0.last!.date > $1.last!.date }
+        let figures = Dictionary(store.data.routines.flatMap(\.exercises).map { ($0.id, $0.catalogID) }, uniquingKeysWith: { first, _ in first })
         NavigationStack {
             List(groups, id: \.first!.exerciseID) { entries in
+                let gain = entries.last!.weight - entries.first!.weight
                 NavigationLink {
                     ExerciseHistory(entries: entries)
                 } label: {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(entries.last!.name)
-                        Text("\(entries.first!.weight.formatted()) → \(entries.last!.weight.formatted()) kg · \(entries.count) sessions")
-                            .font(.subheadline).foregroundStyle(.secondary)
+                    HStack(spacing: 12) {
+                        ExerciseFigure(id: figures[entries.last!.exerciseID] ?? nil).frame(width: 52)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(entries.last!.name)
+                            Text("\(entries.first!.weight.formatted()) → \(entries.last!.weight.formatted()) kg · \(entries.count) sessions")
+                                .font(.subheadline).foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        if gain != 0 {
+                            Text("\(gain > 0 ? "+" : "")\(gain.formatted()) kg")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(gain > 0 ? Color.green : Color.secondary)
+                        }
                     }
                 }
             }

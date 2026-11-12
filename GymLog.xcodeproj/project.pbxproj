@@ -11,11 +11,14 @@
 		2271F89905070FCCA6FFB646 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE91820B78E7732063871E /* WorkoutView.swift */; };
 		6071BC8A2DFE5BFBAC06789C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */; };
 		6859C80352306E24631301D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79081AA4EC3E3C04631F3BEE /* WidgetKit.framework */; };
+		7F279174B24A10ECB2B76E83 /* ExercisePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806758B7B7D9356D851A99E /* ExercisePicker.swift */; };
 		894CFD95F69436EFC7B44465 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965F530C93C94AD04EE4DB3 /* Store.swift */; };
 		8963E36C78E743C1CF259439 /* GymLogWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 138B3960F9FD020E3F9E8260 /* GymLogWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9061739DD3E0195BB2509279 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012A6EB9BBC923B5CCCAA9E /* WorkoutSession.swift */; };
+		A89BB79AAA6D272F57AC4E39 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74C2F42898119A02C26568 /* Catalog.swift */; };
 		AACF61F2510FD8A04EA16BD0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE08805033F87A8C029589A /* SwiftUI.framework */; };
 		B1909F435BDE7A159DD4A8B2 /* GymLogWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8DB0D01B8FBB1FCD6D0B6 /* GymLogWidget.swift */; };
+		B3CE8942ACDD912EC7CD78F2 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74C2F42898119A02C26568 /* Catalog.swift */; };
 		B5D69966BB9438F269E5D164 /* GymLogWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D62A4CE2B9CD0E1DD6F82110 /* GymLogWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C02FBF7C875DF0CA47402930 /* GymLogWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7C599FFA72D0176EFD4531 /* GymLogWatchApp.swift */; };
 		C5CED21FA3CDB7E268D0CAE0 /* GymLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6A8996B9051188CAEECFC /* GymLogApp.swift */; };
@@ -70,6 +73,7 @@
 		0012A6EB9BBC923B5CCCAA9E /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
 		0B41062FF22780E578B4D496 /* GymLogWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GymLogWatch.entitlements; sourceTree = "<group>"; };
 		138B3960F9FD020E3F9E8260 /* GymLogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1806758B7B7D9356D851A99E /* ExercisePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePicker.swift; sourceTree = "<group>"; };
 		18B8DB0D01B8FBB1FCD6D0B6 /* GymLogWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogWidget.swift; sourceTree = "<group>"; };
 		3CF28D61565BCDAA997F1850 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		5965F530C93C94AD04EE4DB3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		D5AE91820B78E7732063871E /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		D62A4CE2B9CD0E1DD6F82110 /* GymLogWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GymLogWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		FB74C2F42898119A02C26568 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		FEB6A8996B9051188CAEECFC /* GymLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogApp.swift; sourceTree = "<group>"; };
 		FF1DE01E833528FC1C5E9D87 /* GymLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +142,7 @@
 		91CFDAFAA9EF176C34A3A253 /* GymLog */ = {
 			isa = PBXGroup;
 			children = (
+				1806758B7B7D9356D851A99E /* ExercisePicker.swift */,
 				FEB6A8996B9051188CAEECFC /* GymLogApp.swift */,
 				E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */,
 				CFB3F3E71D85F94251D73855 /* Info.plist */,
@@ -166,6 +172,7 @@
 		C86EC3AEAA6F3A2EE9DCC20A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				FB74C2F42898119A02C26568 /* Catalog.swift */,
 				3CF28D61565BCDAA997F1850 /* Models.swift */,
 				5965F530C93C94AD04EE4DB3 /* Store.swift */,
 			);
@@ -241,11 +248,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					071FF3AD34E62089B3456D5B = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					B121509998DF0A47D4E3FC9D = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					F3E1764F4BC6D867599A372E = {
@@ -279,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3CE8942ACDD912EC7CD78F2 /* Catalog.swift in Sources */,
 				C02FBF7C875DF0CA47402930 /* GymLogWatchApp.swift in Sources */,
 				DE0417A2368415F4A5CDF6F2 /* Models.swift in Sources */,
 				14827D76F8486FF019D3EBAD /* Store.swift in Sources */,
@@ -291,6 +297,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A89BB79AAA6D272F57AC4E39 /* Catalog.swift in Sources */,
+				7F279174B24A10ECB2B76E83 /* ExercisePicker.swift in Sources */,
 				C5CED21FA3CDB7E268D0CAE0 /* GymLogApp.swift in Sources */,
 				6071BC8A2DFE5BFBAC06789C /* HistoryView.swift in Sources */,
 				FE73060F66BDF50EAEAA6616 /* Models.swift in Sources */,
@@ -328,6 +336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GymLogWatch/GymLogWatch.entitlements;
+				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp;
 				SDKROOT = watchos;
@@ -339,6 +348,7 @@
 		3AD235867F70E207FDC55021 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -355,6 +365,7 @@
 		6001F047EC6C888547BC6477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GymLogWatch/GymLogWatch.entitlements;
+				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp;
 				SDKROOT = watchos;

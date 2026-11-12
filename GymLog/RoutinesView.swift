@@ -10,11 +10,22 @@ struct RoutinesView: View {
             List {
                 ForEach(store.data.routines) { routine in
                     NavigationLink(value: routine.id) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(routine.name.isEmpty ? "New routine" : routine.name).font(.headline)
-                            Text([routine.days, "\(routine.exercises.count) exercises"].filter { !$0.isEmpty }.joined(separator: " — "))
-                                .font(.subheadline)
-                                .foregroundStyle(routine.isToday ? Color.accentColor : Color.secondary)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(routine.name.isEmpty ? "New routine" : routine.name).font(.headline)
+                                Text([routine.days, "\(routine.exercises.count) exercises", routine.exercises.isEmpty ? "" : "about \(routine.minutes) min"].filter { !$0.isEmpty }.joined(separator: " · "))
+                                    .font(.subheadline)
+                                    .foregroundStyle(Color.secondary)
+                            }
+                            Spacer()
+                            if routine.isToday {
+                                Text("Today")
+                                    .font(.caption.weight(.semibold))
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.accentColor.opacity(0.15), in: Capsule())
+                                    .foregroundStyle(Color.accentColor)
+                            }
                         }
                     }
                 }
@@ -48,6 +59,7 @@ struct RoutinesView: View {
 
 struct RoutineEditor: View {
     @Binding var routine: Routine
+    @State private var picking = false
 
     var body: some View {
         Form {
@@ -74,17 +86,23 @@ struct RoutineEditor: View {
                     NavigationLink {
                         ExerciseEditor(exercise: $exercise)
                     } label: {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(exercise.name.isEmpty ? "New exercise" : exercise.name)
-                            Text("\(exercise.target) · \(exercise.load) · rest \(clock(exercise.rest))")
-                                .font(.subheadline).foregroundStyle(.secondary)
+                        HStack(spacing: 12) {
+                            ExerciseFigure(id: exercise.catalogID).frame(width: 52)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(exercise.name.isEmpty ? "New exercise" : exercise.name)
+                                Text("\(exercise.target) · \(exercise.load) · rest \(clock(exercise.rest))")
+                                    .font(.subheadline).foregroundStyle(.secondary)
+                            }
                         }
                     }
                 }
                 .onDelete { routine.exercises.remove(atOffsets: $0) }
                 .onMove { routine.exercises.move(fromOffsets: $0, toOffset: $1) }
-                Button("Add exercise", systemImage: "plus") { routine.exercises.append(Exercise()) }
+                Button("Add exercises", systemImage: "plus") { picking = true }
             }
+        }
+        .sheet(isPresented: $picking) {
+            ExercisePicker { routine.exercises += $0 }
         }
         .navigationTitle(routine.name.isEmpty ? "New routine" : routine.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -93,11 +111,23 @@ struct RoutineEditor: View {
 }
 
 struct ExerciseEditor: View {
+    @Environment(Store.self) private var store
     @Binding var exercise: Exercise
 
     var body: some View {
         Form {
-            TextField("Name, e.g. Bench press", text: $exercise.name)
+            if exercise.catalogID != nil {
+                Section {
+                    ExerciseFigure(id: exercise.catalogID).frame(maxWidth: 220).frame(maxWidth: .infinity)
+                }
+                .listRowBackground(Color.clear)
+            }
+            Section {
+                TextField("Name, e.g. Bench press", text: $exercise.name)
+                if let last = store.data.log.last(where: { $0.exerciseID == exercise.id }) {
+                    LabeledContent("Last workout", value: "\(last.target) · \(last.weight.formatted()) kg · \(last.date.formatted(date: .abbreviated, time: .omitted))")
+                }
+            }
             Section("Sets") {
                 Stepper("\(exercise.sets) sets", value: $exercise.sets, in: 1...20)
                 Toggle("Timed sets", isOn: Binding(get: { exercise.seconds > 0 }, set: { exercise.seconds = $0 ? 30 : 0 }))

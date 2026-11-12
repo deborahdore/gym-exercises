@@ -8,6 +8,7 @@ struct Exercise: Codable, Identifiable, Hashable {
     var seconds = 0      // > 0 makes it a timed set (plank, wall sit…) and reps are ignored
     var weight = 0.0     // kg, 0 = bodyweight
     var rest = 90        // seconds between sets
+    var catalogID: String?   // built-in exercise it was picked from (see Catalog.swift); nil for custom ones
 
     var target: String { seconds > 0 ? "\(sets) × \(clock(seconds))" : "\(sets) × \(reps)" }
     var load: String { weight > 0 ? "\(weight.formatted()) kg" : "Bodyweight" }
@@ -19,6 +20,8 @@ struct Routine: Codable, Identifiable, Hashable {
     var weekdays: [Int] = []   // Calendar weekdays, 1 = Sunday
     var exercises: [Exercise] = []
 
+    // Rough length of the session: about 40 s of work per set, plus the rests.
+    var minutes: Int { exercises.reduce(0) { $0 + $1.sets * (max($1.seconds, 40) + $1.rest) } / 60 }
     var isToday: Bool { weekdays.contains(Calendar.current.component(.weekday, from: .now)) }
     var days: String {
         mondayFirst.filter { weekdays.contains($0) }.map { Calendar.current.shortWeekdaySymbols[$0 - 1] }.joined(separator: " · ")

@@ -30,7 +30,10 @@ struct WorkoutView: View {
         VStack(spacing: 4) {
             switch phase {
             case .work, .timing:
-                Text(exercise.name).font(.headline).lineLimit(2).multilineTextAlignment(.center)
+                HStack {
+                    if exercise.catalogID != nil { ExerciseFigure(id: exercise.catalogID).frame(width: 38) }
+                    Text(exercise.name).font(.headline).lineLimit(2).minimumScaleFactor(0.8)
+                }
                 Text("Set \(setNumber) of \(exercise.sets)").font(.footnote).foregroundStyle(.secondary)
                 if phase == .timing {
                     countdown
@@ -92,6 +95,7 @@ struct WorkoutView: View {
             List(exercises.indices, id: \.self) { i in
                 Button { start(i) } label: {
                     HStack {
+                        if exercises[i].catalogID != nil { ExerciseFigure(id: exercises[i].catalogID).frame(width: 30) }
                         Text(exercises[i].name)
                         Spacer()
                         if done.contains(exercises[i].id) { Image(systemName: "checkmark").foregroundStyle(.green) }
