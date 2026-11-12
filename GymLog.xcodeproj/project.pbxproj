@@ -25,6 +25,8 @@
 		DE0417A2368415F4A5CDF6F2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF28D61565BCDAA997F1850 /* Models.swift */; };
 		EA3BFC88B7FCE02165304DC0 /* RoutinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CD997B99CDD9EA82E4F84 /* RoutinesView.swift */; };
 		FE73060F66BDF50EAEAA6616 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF28D61565BCDAA997F1850 /* Models.swift */; };
+		A1C0900000000000000000A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0900000000000000000A1 /* Assets.xcassets */; };
+		A1C0900000000000000000B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0900000000000000000B1 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		FB74C2F42898119A02C26568 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		FEB6A8996B9051188CAEECFC /* GymLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogApp.swift; sourceTree = "<group>"; };
 		FF1DE01E833528FC1C5E9D87 /* GymLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1C0900000000000000000A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1C0900000000000000000B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 		25E6BA7CC4E13552E6B91F91 /* GymLogWatch */ = {
 			isa = PBXGroup;
 			children = (
+				A1C0900000000000000000B1 /* Assets.xcassets */,
 				0B41062FF22780E578B4D496 /* GymLogWatch.entitlements */,
 				CA7C599FFA72D0176EFD4531 /* GymLogWatchApp.swift */,
 				723149D31372D01B651B6BFE /* Info.plist */,
@@ -142,6 +147,7 @@
 		91CFDAFAA9EF176C34A3A253 /* GymLog */ = {
 			isa = PBXGroup;
 			children = (
+				A1C0900000000000000000A1 /* Assets.xcassets */,
 				1806758B7B7D9356D851A99E /* ExercisePicker.swift */,
 				FEB6A8996B9051188CAEECFC /* GymLogApp.swift */,
 				E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */,
@@ -205,6 +211,7 @@
 			buildConfigurationList = 70C1C7B43AB833D12B8041D6 /* Build configuration list for PBXNativeTarget "GymLogWatch" */;
 			buildPhases = (
 				4E00281FB971CA5E3124C371 /* Sources */,
+				A1C0900000000000000000B3 /* Resources */,
 				C4AD45F7F4C372ED97B935E3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -224,6 +231,7 @@
 			buildConfigurationList = B82AC5F1C6EE4FE63FE1FBD9 /* Build configuration list for PBXNativeTarget "GymLog" */;
 			buildPhases = (
 				5029C39FB53EEBF114BF6419 /* Sources */,
+				A1C0900000000000000000A3 /* Resources */,
 				AEDFD4D9887A2B747124BB57 /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -278,6 +286,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1C0900000000000000000A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1C0900000000000000000A2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1C0900000000000000000B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1C0900000000000000000B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E00281FB971CA5E3124C371 /* Sources */ = {
