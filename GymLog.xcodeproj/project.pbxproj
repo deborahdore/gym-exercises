@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14827D76F8486FF019D3EBAD /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965F530C93C94AD04EE4DB3 /* Store.swift */; };
+		2271F89905070FCCA6FFB646 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE91820B78E7732063871E /* WorkoutView.swift */; };
+		6071BC8A2DFE5BFBAC06789C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */; };
+		6859C80352306E24631301D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79081AA4EC3E3C04631F3BEE /* WidgetKit.framework */; };
+		894CFD95F69436EFC7B44465 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965F530C93C94AD04EE4DB3 /* Store.swift */; };
+		8963E36C78E743C1CF259439 /* GymLogWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 138B3960F9FD020E3F9E8260 /* GymLogWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9061739DD3E0195BB2509279 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012A6EB9BBC923B5CCCAA9E /* WorkoutSession.swift */; };
+		AACF61F2510FD8A04EA16BD0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE08805033F87A8C029589A /* SwiftUI.framework */; };
+		B1909F435BDE7A159DD4A8B2 /* GymLogWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8DB0D01B8FBB1FCD6D0B6 /* GymLogWidget.swift */; };
+		B5D69966BB9438F269E5D164 /* GymLogWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D62A4CE2B9CD0E1DD6F82110 /* GymLogWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C02FBF7C875DF0CA47402930 /* GymLogWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7C599FFA72D0176EFD4531 /* GymLogWatchApp.swift */; };
+		C5CED21FA3CDB7E268D0CAE0 /* GymLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB6A8996B9051188CAEECFC /* GymLogApp.swift */; };
+		DE0417A2368415F4A5CDF6F2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF28D61565BCDAA997F1850 /* Models.swift */; };
+		EA3BFC88B7FCE02165304DC0 /* RoutinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CD997B99CDD9EA82E4F84 /* RoutinesView.swift */; };
+		FE73060F66BDF50EAEAA6616 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF28D61565BCDAA997F1850 /* Models.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AB6943C59D50DACDEB474C44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 603D7722CBD262630C74AE51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 071FF3AD34E62089B3456D5B;
+			remoteInfo = GymLogWidget;
+		};
+		B03B6882B6DDDB6EF165A7B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 603D7722CBD262630C74AE51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B121509998DF0A47D4E3FC9D;
+			remoteInfo = GymLogWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AEDFD4D9887A2B747124BB57 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8963E36C78E743C1CF259439 /* GymLogWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AD45F7F4C372ED97B935E3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B5D69966BB9438F269E5D164 /* GymLogWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0012A6EB9BBC923B5CCCAA9E /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
+		0B41062FF22780E578B4D496 /* GymLogWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GymLogWatch.entitlements; sourceTree = "<group>"; };
+		138B3960F9FD020E3F9E8260 /* GymLogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B8DB0D01B8FBB1FCD6D0B6 /* GymLogWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogWidget.swift; sourceTree = "<group>"; };
+		3CF28D61565BCDAA997F1850 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		5965F530C93C94AD04EE4DB3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		634D2FE17D2ABF970E623125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		723149D31372D01B651B6BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		79081AA4EC3E3C04631F3BEE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8DE08805033F87A8C029589A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		968CD997B99CDD9EA82E4F84 /* RoutinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesView.swift; sourceTree = "<group>"; };
+		CA7C599FFA72D0176EFD4531 /* GymLogWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogWatchApp.swift; sourceTree = "<group>"; };
+		CFB3F3E71D85F94251D73855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D5AE91820B78E7732063871E /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		D62A4CE2B9CD0E1DD6F82110 /* GymLogWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GymLogWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		FEB6A8996B9051188CAEECFC /* GymLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogApp.swift; sourceTree = "<group>"; };
+		FF1DE01E833528FC1C5E9D87 /* GymLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BFEE83B59ED335577D41664 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACF61F2510FD8A04EA16BD0 /* SwiftUI.framework in Frameworks */,
+				6859C80352306E24631301D8 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E79CF4A91A6362D4F565AEF = {
+			isa = PBXGroup;
+			children = (
+				91CFDAFAA9EF176C34A3A253 /* GymLog */,
+				25E6BA7CC4E13552E6B91F91 /* GymLogWatch */,
+				A30645311BF8D71FB924168A /* GymLogWidget */,
+				C86EC3AEAA6F3A2EE9DCC20A /* Shared */,
+				B6A83FC8C724CDD8E1EF363D /* Frameworks */,
+				34BD467E8B122849F21D54BE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		25E6BA7CC4E13552E6B91F91 /* GymLogWatch */ = {
+			isa = PBXGroup;
+			children = (
+				0B41062FF22780E578B4D496 /* GymLogWatch.entitlements */,
+				CA7C599FFA72D0176EFD4531 /* GymLogWatchApp.swift */,
+				723149D31372D01B651B6BFE /* Info.plist */,
+				0012A6EB9BBC923B5CCCAA9E /* WorkoutSession.swift */,
+				D5AE91820B78E7732063871E /* WorkoutView.swift */,
+			);
+			path = GymLogWatch;
+			sourceTree = "<group>";
+		};
+		34BD467E8B122849F21D54BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF1DE01E833528FC1C5E9D87 /* GymLog.app */,
+				138B3960F9FD020E3F9E8260 /* GymLogWatch.app */,
+				D62A4CE2B9CD0E1DD6F82110 /* GymLogWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91CFDAFAA9EF176C34A3A253 /* GymLog */ = {
+			isa = PBXGroup;
+			children = (
+				FEB6A8996B9051188CAEECFC /* GymLogApp.swift */,
+				E75F13D4AFFF4CC44C4CD857 /* HistoryView.swift */,
+				CFB3F3E71D85F94251D73855 /* Info.plist */,
+				968CD997B99CDD9EA82E4F84 /* RoutinesView.swift */,
+			);
+			path = GymLog;
+			sourceTree = "<group>";
+		};
+		A30645311BF8D71FB924168A /* GymLogWidget */ = {
+			isa = PBXGroup;
+			children = (
+				18B8DB0D01B8FBB1FCD6D0B6 /* GymLogWidget.swift */,
+				634D2FE17D2ABF970E623125 /* Info.plist */,
+			);
+			path = GymLogWidget;
+			sourceTree = "<group>";
+		};
+		B6A83FC8C724CDD8E1EF363D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DE08805033F87A8C029589A /* SwiftUI.framework */,
+				79081AA4EC3E3C04631F3BEE /* WidgetKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C86EC3AEAA6F3A2EE9DCC20A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3CF28D61565BCDAA997F1850 /* Models.swift */,
+				5965F530C93C94AD04EE4DB3 /* Store.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		071FF3AD34E62089B3456D5B /* GymLogWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8998E6B22C0ACF8DA1792A80 /* Build configuration list for PBXNativeTarget "GymLogWidget" */;
+			buildPhases = (
+				F3D3702F6479941FEDB2CF38 /* Sources */,
+				3BFEE83B59ED335577D41664 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GymLogWidget;
+			packageProductDependencies = (
+			);
+			productName = GymLogWidget;
+			productReference = D62A4CE2B9CD0E1DD6F82110 /* GymLogWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B121509998DF0A47D4E3FC9D /* GymLogWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70C1C7B43AB833D12B8041D6 /* Build configuration list for PBXNativeTarget "GymLogWatch" */;
+			buildPhases = (
+				4E00281FB971CA5E3124C371 /* Sources */,
+				C4AD45F7F4C372ED97B935E3 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				271277F8A2BED7F79DE9BBA4 /* PBXTargetDependency */,
+			);
+			name = GymLogWatch;
+			packageProductDependencies = (
+			);
+			productName = GymLogWatch;
+			productReference = 138B3960F9FD020E3F9E8260 /* GymLogWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F3E1764F4BC6D867599A372E /* GymLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82AC5F1C6EE4FE63FE1FBD9 /* Build configuration list for PBXNativeTarget "GymLog" */;
+			buildPhases = (
+				5029C39FB53EEBF114BF6419 /* Sources */,
+				AEDFD4D9887A2B747124BB57 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90BE274A4DABD2DCCAF12858 /* PBXTargetDependency */,
+			);
+			name = GymLog;
+			packageProductDependencies = (
+			);
+			productName = GymLog;
+			productReference = FF1DE01E833528FC1C5E9D87 /* GymLog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		603D7722CBD262630C74AE51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					071FF3AD34E62089B3456D5B = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					B121509998DF0A47D4E3FC9D = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					F3E1764F4BC6D867599A372E = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1A1FD769F16AFB936057A37F /* Build configuration list for PBXProject "GymLog" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 1E79CF4A91A6362D4F565AEF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 34BD467E8B122849F21D54BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3E1764F4BC6D867599A372E /* GymLog */,
+				B121509998DF0A47D4E3FC9D /* GymLogWatch */,
+				071FF3AD34E62089B3456D5B /* GymLogWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E00281FB971CA5E3124C371 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C02FBF7C875DF0CA47402930 /* GymLogWatchApp.swift in Sources */,
+				DE0417A2368415F4A5CDF6F2 /* Models.swift in Sources */,
+				14827D76F8486FF019D3EBAD /* Store.swift in Sources */,
+				9061739DD3E0195BB2509279 /* WorkoutSession.swift in Sources */,
+				2271F89905070FCCA6FFB646 /* WorkoutView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5029C39FB53EEBF114BF6419 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5CED21FA3CDB7E268D0CAE0 /* GymLogApp.swift in Sources */,
+				6071BC8A2DFE5BFBAC06789C /* HistoryView.swift in Sources */,
+				FE73060F66BDF50EAEAA6616 /* Models.swift in Sources */,
+				EA3BFC88B7FCE02165304DC0 /* RoutinesView.swift in Sources */,
+				894CFD95F69436EFC7B44465 /* Store.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3D3702F6479941FEDB2CF38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1909F435BDE7A159DD4A8B2 /* GymLogWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		271277F8A2BED7F79DE9BBA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 071FF3AD34E62089B3456D5B /* GymLogWidget */;
+			targetProxy = AB6943C59D50DACDEB474C44 /* PBXContainerItemProxy */;
+		};
+		90BE274A4DABD2DCCAF12858 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B121509998DF0A47D4E3FC9D /* GymLogWatch */;
+			targetProxy = B03B6882B6DDDB6EF165A7B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		17DD03C9D8F5E160FAFF2396 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GymLogWatch/GymLogWatch.entitlements;
+				INFOPLIST_FILE = GymLogWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		3AD235867F70E207FDC55021 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GymLogWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp.widget;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		6001F047EC6C888547BC6477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GymLogWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp.widget;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		75AFC6BCB4234479637555D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GymLogWatch/GymLogWatch.entitlements;
+				INFOPLIST_FILE = GymLogWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		79136F8E896E32BBA33A00D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZNDB645YBB;
+				INFOPLIST_FILE = GymLog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8544F27674DE620614CF3E0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZNDB645YBB;
+				INFOPLIST_FILE = GymLog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BB78277A682D8ECCBDA491C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		F2D5228BB185D499760C596C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A1FD769F16AFB936057A37F /* Build configuration list for PBXProject "GymLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB78277A682D8ECCBDA491C8 /* Debug */,
+				F2D5228BB185D499760C596C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		70C1C7B43AB833D12B8041D6 /* Build configuration list for PBXNativeTarget "GymLogWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75AFC6BCB4234479637555D1 /* Debug */,
+				17DD03C9D8F5E160FAFF2396 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8998E6B22C0ACF8DA1792A80 /* Build configuration list for PBXNativeTarget "GymLogWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6001F047EC6C888547BC6477 /* Debug */,
+				3AD235867F70E207FDC55021 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B82AC5F1C6EE4FE63FE1FBD9 /* Build configuration list for PBXNativeTarget "GymLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79136F8E896E32BBA33A00D0 /* Debug */,
+				8544F27674DE620614CF3E0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 603D7722CBD262630C74AE51 /* Project object */;
+}
