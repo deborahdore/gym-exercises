@@ -124,12 +124,15 @@ let catalog: [CatalogExercise] = [
 // Reads a figure from the device, or fetches it from GitHub the first time.
 func figure(_ id: String) async -> UIImage? {
     // The folder name changes when the figures are redrawn, so devices fetch the new ones.
-    let folder = URL.applicationSupportDirectory.appending(path: "figures-2")
-    try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appending(path: "figures"))
+    let folder = URL.applicationSupportDirectory.appending(path: "figures-3")
+    for old in ["figures", "figures-2"] {
+        try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appending(path: old))
+    }
     let file = folder.appending(path: "\(id).png")
     if let data = try? Data(contentsOf: file) { return UIImage(data: data) }
+    // The system's own HTTP cache is skipped: it kept serving the previous drawing of a figure.
     guard let url = URL(string: "https://raw.githubusercontent.com/deborahdore/gym-exercises/main/catalog/images/\(id).png"),
-          let (data, response) = try? await URLSession.shared.data(from: url),
+          let (data, response) = try? await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)),
           (response as? HTTPURLResponse)?.statusCode == 200,
           let image = UIImage(data: data) else { return nil }
     try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
