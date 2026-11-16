@@ -24,6 +24,7 @@ struct ExercisePicker: View {
         catalog.filter {
             // The id and the equipment are searched too, so "abduction" or "trx" find their exercises.
             (search.isEmpty || $0.name.localizedCaseInsensitiveContains(search) || $0.id.localizedCaseInsensitiveContains(search)
+                || $0.alias.localizedCaseInsensitiveContains(search)
                 || $0.equipment.localizedCaseInsensitiveContains(search))
                 && (muscle == "All" || $0.muscle == muscle)
                 && (kind == "All" || $0.kind == kind)
@@ -120,6 +121,7 @@ struct ExercisePicker: View {
             } else {
                 var exercise = planned ?? item.exercise
                 exercise.id = UUID()
+                exercise.circuit = nil
                 picked.append(exercise)
             }
         } label: {

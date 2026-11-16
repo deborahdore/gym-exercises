@@ -25,6 +25,8 @@ struct WorkoutView: View {
     }
 
     private var exercise: Exercise { exercises[index] }
+    // The exercises done back to back with the current one; just itself outside a circuit.
+    private var circuit: Range<Int> { exercises.circuit(at: index) }
 
     var body: some View {
         Group {
@@ -81,7 +83,8 @@ struct WorkoutView: View {
             switch phase {
             case .work, .timing:
                 Text(exercise.name).font(.title3.weight(.semibold)).lineLimit(3).minimumScaleFactor(0.7).multilineTextAlignment(.center)
-                Text("Set \(setNumber) of \(exercise.sets)").font(.footnote).foregroundStyle(.secondary)
+                Text(circuit.count > 1 ? "Round \(setNumber) of \(exercise.sets) · \(index - circuit.lowerBound + 1)/\(circuit.count)" : "Set \(setNumber) of \(exercise.sets)")
+                    .font(.footnote).foregroundStyle(.secondary)
                 if phase == .timing { countdown }
                 Spacer(minLength: 0)
                 if phase == .timing {
@@ -95,7 +98,7 @@ struct WorkoutView: View {
             case .rest:
                 Text("Rest").font(.footnote).foregroundStyle(.secondary)
                 countdown
-                Text("Next: set \(setNumber + 1) of \(exercise.sets)").font(.footnote)
+                Text("Next: \(circuit.count > 1 ? "round" : "set") \(setNumber + 1) of \(exercise.sets)").font(.footnote)
                 Spacer(minLength: 0)
                 HStack {
                     Button("+15 s") { end = (end ?? .now) + 15 }
@@ -158,7 +161,20 @@ struct WorkoutView: View {
 
     private func finishSet() {
         end = nil
-        if setNumber >= exercise.sets {
+        let circuit = circuit
+        if index < circuit.upperBound - 1 {
+            // Straight to the next exercise of the circuit; the rest comes after the last one.
+            index += 1
+            phase = .work
+            page = 1
+        } else if setNumber >= exercise.sets, circuit.count > 1 {
+            // A circuit is logged as it was done, without asking a new weight for each exercise.
+            for exercise in exercises[circuit] {
+                store.record(LogEntry(exerciseID: exercise.id, name: exercise.name, weight: exercise.weight, target: exercise.target, next: exercise.weight))
+                done.insert(exercise.id)
+            }
+            advance()
+        } else if setNumber >= exercise.sets {
             weight = exercise.weight
             phase = .review
         } else if exercise.rest > 0 {
@@ -171,6 +187,7 @@ struct WorkoutView: View {
 
     private func nextSet() {
         end = nil
+        index = circuit.lowerBound
         setNumber += 1
         phase = .work
     }
@@ -178,6 +195,10 @@ struct WorkoutView: View {
     private func saveExercise() {
         store.record(LogEntry(exerciseID: exercise.id, name: exercise.name, weight: exercise.weight, target: exercise.target, next: weight))
         done.insert(exercise.id)
+        advance()
+    }
+
+    private func advance() {
         if let next = exercises.firstIndex(where: { !done.contains($0.id) }) {
             start(next)
         } else {
@@ -205,14 +226,19 @@ struct ExerciseEdit: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("Sets") { Stepper("\(exercise.sets)", value: $exercise.sets, in: 1...20) }
+                // The rounds and the rest of a circuit belong to all its exercises: they are set on the phone.
+                if exercise.circuit == nil {
+                    Section("Sets") { Stepper("\(exercise.sets)", value: $exercise.sets, in: 1...20) }
+                }
                 if exercise.seconds > 0 {
                     Section("Time per set") { Stepper(clock(exercise.seconds), value: $exercise.seconds, in: 5...600, step: 5) }
                 } else {
                     Section("Reps") { Stepper("\(exercise.reps)", value: $exercise.reps, in: 1...100) }
                 }
                 Section("Weight (kg)") { Stepper(exercise.weight.formatted(), value: $exercise.weight, in: 0...500, step: 2.5) }
-                Section("Rest") { Stepper(clock(exercise.rest), value: $exercise.rest, in: 0...600, step: 15) }
+                if exercise.circuit == nil {
+                    Section("Rest") { Stepper(clock(exercise.rest), value: $exercise.rest, in: 0...600, step: 15) }
+                }
                 Section("Notes") {
                     TextField("Notes", text: Binding(get: { exercise.notes ?? "" }, set: { exercise.notes = $0.isEmpty ? nil : $0 }))
                 }

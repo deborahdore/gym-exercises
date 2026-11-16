@@ -146,6 +146,13 @@ def dbl(p, a=90, l=11):  # dumbbell seen from the side, a = direction of the han
         line([add(e, n), add(e, (-n[0], -n[1]))], 6, ACC)
 
 
+def kettlebell(p):  # p = the hand on the handle
+    c = add(p, (0, 11))
+    d.ellipse(((p[0] - 6) * S, (p[1] - 5) * S, (p[0] + 6) * S, (p[1] + 8) * S), outline=tone(ACC), width=int(3 * S))
+    dot(c, 9.5, ACC)
+    dot(c, 3.2, FRAME)
+
+
 def pad(p, q, w=8):
     line([p, q], w, FRAME)
 
@@ -1070,6 +1077,28 @@ def russian_twist():
     plate(J["hand"], 11)
 
 
+def kettlebell_v_sit_pass():  # balanced on the seat, the kettlebell goes from one side to the other
+    floor()
+    J = side((112, 194), -152, [(66, 84)], [(116, 76)])
+    body(J, mus=("abs",))
+    kettlebell(J["hand"])
+
+
+def scissors():  # lying on the back, the legs cross up and down
+    floor()
+    J = side((112, 198), -90, [(90, 90)], [M((97, 95), (118, 116)), M((118, 116), (97, 95))])
+    body(J, feet=False, mus=("abs",), far=BODY)
+    for k in (0, 1):
+        mark(add(J["legs"][k][1], (14 + 14 * k, 0)), 0, k)
+
+
+def bird_dog():  # on all fours, one arm and the opposite leg reach out
+    floor()
+    J = side((100, 161), 108, [M((2, 0), (104, 102)), (0, 0)], [(0, -90), M((0, -90), (-94, -92))])
+    body(J, feet=False, mus=("abs", "lowback", "glutes"))
+    mark(J["foot"], 16)
+
+
 def cable_crunch():
     column(204, 20)
     top = pulley(132)
@@ -1191,7 +1220,7 @@ EXERCISES = [
     lunge, bulgarian_split_squat, step_up, wall_sit, romanian_deadlift, hip_thrust, glute_bridge,
     hip_abduction_machine, hip_adduction_machine, calf_raise, seated_calf_raise, cable_kickback,
     plank, side_plank, crunch, bicycle_crunch, leg_raise, dead_bug, hanging_leg_raise, russian_twist,
-    cable_crunch, ab_wheel, mountain_climber, superman,
+    cable_crunch, ab_wheel, mountain_climber, superman, kettlebell_v_sit_pass, scissors, bird_dog,
     trx_row, trx_chest_press, trx_y_raise, trx_biceps_curl, trx_triceps_extension, trx_squat, trx_plank,
 ]
 
