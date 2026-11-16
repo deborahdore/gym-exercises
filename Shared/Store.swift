@@ -63,6 +63,15 @@ final class Store: NSObject, WCSessionDelegate {
         save()
     }
 
+    // The exercises of a circuit share the rounds and the rest, so these are changed on all of them.
+    func updateCircuit(_ id: UUID, _ change: (inout Exercise) -> Void) {
+        for r in data.routines.indices {
+            for e in data.routines[r].exercises.indices where data.routines[r].exercises[e].circuit == id {
+                change(&data.routines[r].exercises[e])
+            }
+        }
+    }
+
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error { print("WatchConnectivity activation failed:", error) }
         DispatchQueue.main.async {

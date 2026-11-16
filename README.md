@@ -9,8 +9,11 @@ app to run the workout (phone stays in the locker) and a programmable rest timer
   sets, reps (or seconds for timed sets), weight, rest time and free-text notes (e.g.
   machine settings), which the watch shows during the set. The Progress tab charts the
   weight lifted per exercise over time.
+- **Circuits**: "Add a circuit" groups the picked exercises (marked in orange). On the watch
+  they follow each other without rest; the rest comes after the last one, and the whole
+  circuit is repeated for the chosen number of rounds.
 - **Exercise catalog** (`Shared/Catalog.swift`, `catalog/`): "Add exercises" opens a searchable
-  list of 82 common exercises (TRX included), filtered by muscle group and by equipment (machines, free
+  list of 85 common exercises (TRX included), filtered by muscle group and by equipment (machines, free
   weights, bodyweight); several can be added at once, and custom ones are still possible.
   Only the names ship with the app. Each exercise has a small figure in `catalog/images`,
   which the app downloads from this repository (raw.githubusercontent.com, so the repository

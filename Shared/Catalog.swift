@@ -10,11 +10,12 @@ struct CatalogExercise: Identifiable, Hashable {
     let muscle: String
     let equipment: String
     var seconds = 0         // > 0 for timed holds
+    var alias = ""          // another name it can be searched by
 
     var kind: String {
         switch equipment {
         case "Machine", "Cable": "Machines"
-        case "Barbell", "Dumbbell": "Free weights"
+        case "Barbell", "Dumbbell", "Kettlebell": "Free weights"
         default: "Bodyweight"
         }
     }
@@ -26,8 +27,8 @@ struct CatalogExercise: Identifiable, Hashable {
 
 let muscles = ["Chest", "Back", "Shoulders", "Arms", "Legs", "Core"]
 
-private func x(_ id: String, _ name: String, _ muscle: String, _ equipment: String, _ seconds: Int = 0) -> CatalogExercise {
-    CatalogExercise(id: id, name: name, muscle: muscle, equipment: equipment, seconds: seconds)
+private func x(_ id: String, _ name: String, _ muscle: String, _ equipment: String, _ seconds: Int = 0, alias: String = "") -> CatalogExercise {
+    CatalogExercise(id: id, name: name, muscle: muscle, equipment: equipment, seconds: seconds, alias: alias)
 }
 
 let catalog: [CatalogExercise] = [
@@ -101,7 +102,7 @@ let catalog: [CatalogExercise] = [
     x("cable_kickback", "Cable Kickback", "Legs", "Cable"),
 
     x("plank", "Plank", "Core", "Bodyweight", 45),
-    x("side_plank", "Side Plank", "Core", "Bodyweight", 30),
+    x("side_plank", "Side Plank", "Core", "Bodyweight", 30, alias: "Lateral Plank"),
     x("crunch", "Crunch", "Core", "Bodyweight"),
     x("bicycle_crunch", "Bicycle Crunch", "Core", "Bodyweight"),
     x("leg_raise", "Leg Raise", "Core", "Bodyweight"),
@@ -111,6 +112,9 @@ let catalog: [CatalogExercise] = [
     x("cable_crunch", "Cable Crunch", "Core", "Cable"),
     x("ab_wheel", "Ab Wheel Rollout", "Core", "Bodyweight"),
     x("mountain_climber", "Mountain Climber", "Core", "Bodyweight", 30),
+    x("bird_dog", "Bird Dog", "Core", "Bodyweight"),
+    x("scissors", "Scissors", "Core", "Bodyweight", 30, alias: "Scissor Kicks"),
+    x("kettlebell_v_sit_pass", "Kettlebell V-Sit Pass", "Core", "Kettlebell", alias: "Kettlebell abs side to side"),
 
     x("trx_chest_press", "TRX Chest Press", "Chest", "TRX"),
     x("trx_row", "TRX Row", "Back", "TRX"),

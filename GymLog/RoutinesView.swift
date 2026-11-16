@@ -61,6 +61,7 @@ struct RoutineEditor: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var routine: Routine
     @State private var picking = false
+    @State private var pickingCircuit = false
 
     var body: some View {
         Form {
@@ -84,14 +85,20 @@ struct RoutineEditor: View {
             }
             Section("Exercises") {
                 ForEach($routine.exercises) { $exercise in
+                    let first = routine.exercises.firstIndex { $0.id == exercise.id }.map { $0 == routine.exercises.circuit(at: $0).lowerBound } ?? false
                     NavigationLink {
                         ExerciseEditor(exercise: $exercise)
                     } label: {
                         HStack(spacing: 12) {
+                            if exercise.circuit != nil { Capsule().fill(Color.orange).frame(width: 4) }
                             ExerciseFigure(id: exercise.catalogID).frame(width: 52)
                             VStack(alignment: .leading, spacing: 2) {
+                                if exercise.circuit != nil, first {
+                                    Text("Circuit · \(exercise.sets) rounds · rest \(clock(exercise.rest))")
+                                        .font(.caption.weight(.semibold)).foregroundStyle(.orange)
+                                }
                                 Text(exercise.name.isEmpty ? "New exercise" : exercise.name)
-                                Text("\(exercise.target) · \(exercise.load) · rest \(clock(exercise.rest))")
+                                Text(exercise.circuit != nil ? "\(exercise.amount) · \(exercise.load)" : "\(exercise.target) · \(exercise.load) · rest \(clock(exercise.rest))")
                                     .font(.subheadline).foregroundStyle(.secondary)
                                 if let notes = exercise.notes {
                                     Label(notes, systemImage: "note.text")
@@ -104,10 +111,24 @@ struct RoutineEditor: View {
                 .onDelete { routine.exercises.remove(atOffsets: $0) }
                 .onMove { routine.exercises.move(fromOffsets: $0, toOffset: $1) }
                 Button("Add exercises", systemImage: "plus") { picking = true }
+                Button("Add a circuit", systemImage: "arrow.triangle.2.circlepath") { pickingCircuit = true }
             }
         }
         .sheet(isPresented: $picking) {
             ExercisePicker { routine.exercises += $0 }
+        }
+        .sheet(isPresented: $pickingCircuit) {
+            // The picked exercises are done back to back, with one rest after the last.
+            ExercisePicker { picked in
+                let id = UUID()
+                routine.exercises += picked.map { exercise in
+                    var exercise = exercise
+                    exercise.circuit = id
+                    exercise.sets = 3
+                    exercise.rest = 60
+                    return exercise
+                }
+            }
         }
         .navigationTitle(routine.name.isEmpty ? "New routine" : routine.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -125,6 +146,23 @@ struct ExerciseEditor: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var exercise: Exercise
     @FocusState private var typing: Int?
+
+    // Where the exercise just before this one sits in its routine, if there is one.
+    private var above: (routine: Int, exercise: Int)? {
+        for r in store.data.routines.indices {
+            if let e = store.data.routines[r].exercises.firstIndex(where: { $0.id == exercise.id }), e > 0 { return (r, e - 1) }
+        }
+        return nil
+    }
+
+    private func joinCircuit() {
+        guard let above else { return }
+        let id = store.data.routines[above.routine].exercises[above.exercise].circuit ?? UUID()
+        store.data.routines[above.routine].exercises[above.exercise].circuit = id
+        exercise.circuit = id
+        exercise.sets = store.data.routines[above.routine].exercises[above.exercise].sets
+        exercise.rest = store.data.routines[above.routine].exercises[above.exercise].rest
+    }
 
     var body: some View {
         Form {
@@ -147,8 +185,10 @@ struct ExerciseEditor: View {
                     .lineLimit(2...8)
                     .focused($typing, equals: 1)
             }
-            Section("Sets") {
-                Stepper("\(exercise.sets) sets", value: $exercise.sets, in: 1...20)
+            Section(exercise.circuit == nil ? "Sets" : "In each round") {
+                if exercise.circuit == nil {
+                    Stepper("\(exercise.sets) sets", value: $exercise.sets, in: 1...20)
+                }
                 Toggle("Timed sets", isOn: Binding(get: { exercise.seconds > 0 }, set: { exercise.seconds = $0 ? 30 : 0 }))
                 if exercise.seconds > 0 {
                     Stepper("\(clock(exercise.seconds)) per set", value: $exercise.seconds, in: 5...600, step: 5)
@@ -163,8 +203,25 @@ struct ExerciseEditor: View {
                     Stepper("Weight", value: $exercise.weight, in: 0...500, step: 2.5).labelsHidden()
                 }
             }
-            Section("Rest timer") {
-                Stepper("\(clock(exercise.rest)) between sets", value: $exercise.rest, in: 0...600, step: 15)
+            if let circuit = exercise.circuit {
+                Section {
+                    Stepper("\(exercise.sets) rounds", value: Binding(get: { exercise.sets }, set: { sets in store.updateCircuit(circuit) { $0.sets = sets } }), in: 1...20)
+                    Stepper("\(clock(exercise.rest)) rest after each round", value: Binding(get: { exercise.rest }, set: { rest in store.updateCircuit(circuit) { $0.rest = rest } }), in: 0...600, step: 15)
+                    Button("Remove from the circuit", role: .destructive) { exercise.circuit = nil }
+                } header: {
+                    Text("Circuit")
+                } footer: {
+                    Text("The exercises of a circuit are done one after the other, then you rest. Rounds and rest are the same for all of them.")
+                }
+            } else {
+                Section("Rest timer") {
+                    Stepper("\(clock(exercise.rest)) between sets", value: $exercise.rest, in: 0...600, step: 15)
+                }
+                if above != nil {
+                    Section {
+                        Button("Make a circuit with the exercise above", systemImage: "arrow.triangle.2.circlepath") { joinCircuit() }
+                    }
+                }
             }
         }
         .navigationTitle(exercise.name.isEmpty ? "New exercise" : exercise.name)
