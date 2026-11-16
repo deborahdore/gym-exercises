@@ -6,16 +6,20 @@ app to run the workout (phone stays in the locker) and a programmable rest timer
 ## Design
 
 - **iPhone** (`GymLog/`): create routines, assign weekdays, and for each exercise set
-  sets, reps (or seconds for timed sets), weight and rest time. The Progress tab charts the
+  sets, reps (or seconds for timed sets), weight, rest time and free-text notes (e.g.
+  machine settings), which the watch shows during the set. The Progress tab charts the
   weight lifted per exercise over time.
 - **Exercise catalog** (`Shared/Catalog.swift`, `catalog/`): "Add exercises" opens a searchable
-  list of 48 common exercises, filtered by muscle group and by equipment (machines, free
+  list of 82 common exercises (TRX included), filtered by muscle group and by equipment (machines, free
   weights, bodyweight); several can be added at once, and custom ones are still possible.
   Only the names ship with the app. Each exercise has a small figure in `catalog/images`,
   which the app downloads from this repository (raw.githubusercontent.com, so the repository
   must be public) the first time the figure is shown, and then keeps on the device.
+  Each figure shows both ends of the movement (one faded, one solid), an arrow for the
+  direction of the effort, and the trained muscles in orange.
   The figures are drawn by `python3 catalog/figures.py` (needs Pillow); to add an exercise,
-  add a pose there and a line in `Catalog.swift` with the same id.
+  add a pose there and a line in `Catalog.swift` with the same id. After redrawing existing
+  figures, rename the cache folder in `figure()` so devices download them again.
 - **Apple Watch** (`GymLogWatch/`): pick a routine (today's is listed first), then for each
   exercise it shows set number, reps and weight. "Set done" starts the rest countdown
   programmed for that exercise (+15 s / Skip), a haptic marks the end and the next set

@@ -9,6 +9,7 @@ struct Exercise: Codable, Identifiable, Hashable {
     var weight = 0.0     // kg, 0 = bodyweight
     var rest = 90        // seconds between sets
     var catalogID: String?   // built-in exercise it was picked from (see Catalog.swift); nil for custom ones
+    var notes: String?       // free text, e.g. machine settings; optional so older saved data still loads
 
     var target: String { seconds > 0 ? "\(sets) × \(clock(seconds))" : "\(sets) × \(reps)" }
     var load: String { weight > 0 ? "\(weight.formatted()) kg" : "Bodyweight" }

@@ -11,7 +11,7 @@ settings:
     MARKETING_VERSION: "1.0"
     CURRENT_PROJECT_VERSION: "1"
     CODE_SIGN_STYLE: Automatic
-    DEVELOPMENT_TEAM: ""   # your Team ID (Xcode > Settings > Accounts), so signing survives regeneration
+    DEVELOPMENT_TEAM: ZNDB645YBB   # Team ID (Xcode > Settings > Accounts), so signing survives regeneration
 targets:
   GymLog:
     type: application

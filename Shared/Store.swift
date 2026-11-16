@@ -4,7 +4,8 @@ import WatchConnectivity
 
 // The iPhone owns the routines and the history. It pushes routines to the watch as the
 // application context (latest state wins); the watch sends back one LogEntry per finished
-// exercise with transferUserInfo, which is queued until the phone is reachable again.
+// exercise, and any exercise edited on the watch, with transferUserInfo, which is queued
+// until the phone is reachable again.
 @Observable
 final class Store: NSObject, WCSessionDelegate {
     var data = GymData()
@@ -46,7 +47,24 @@ final class Store: NSObject, WCSessionDelegate {
         save()
     }
 
+    // An exercise edited on either device. The watch also sends it to the phone, which then
+    // pushes the routines back as the new application context.
+    func update(_ exercise: Exercise) {
+        for r in data.routines.indices {
+            for e in data.routines[r].exercises.indices where data.routines[r].exercises[e].id == exercise.id {
+                data.routines[r].exercises[e] = exercise
+            }
+        }
+        #if os(watchOS)
+        if let encoded = try? JSONEncoder().encode(exercise) {
+            WCSession.default.transferUserInfo(["exercise": encoded])
+        }
+        #endif
+        save()
+    }
+
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if let error { print("WatchConnectivity activation failed:", error) }
         DispatchQueue.main.async {
             #if os(iOS)
             self.push()
@@ -61,15 +79,30 @@ final class Store: NSObject, WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) { session.activate() }
 
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
-        guard let encoded = userInfo["entry"] as? Data, let entry = try? JSONDecoder().decode(LogEntry.self, from: encoded) else { return }
-        DispatchQueue.main.async { self.record(entry) }
+        if let encoded = userInfo["entry"] as? Data, let entry = try? JSONDecoder().decode(LogEntry.self, from: encoded) {
+            DispatchQueue.main.async { self.record(entry) }
+        } else if let encoded = userInfo["exercise"] as? Data, let exercise = try? JSONDecoder().decode(Exercise.self, from: encoded) {
+            DispatchQueue.main.async { self.update(exercise) }
+        }
+    }
+
+    // The context cannot be set while the watch app is missing, so the routines are pushed
+    // again when it gets installed (or a watch is paired) while the phone app is running.
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        DispatchQueue.main.async { self.push() }
     }
 
     private func push() {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .sortedKeys   // stable bytes, so the watch can tell an unchanged context apart
-        guard WCSession.default.activationState == .activated, let routines = try? encoder.encode(data.routines) else { return }
-        try? WCSession.default.updateApplicationContext(["routines": routines])
+        let session = WCSession.default
+        guard session.activationState == .activated, session.isWatchAppInstalled,
+              let routines = try? encoder.encode(data.routines) else { return }
+        do {
+            try session.updateApplicationContext(["routines": routines])
+        } catch {
+            print("Could not send routines to the watch:", error)
+        }
     }
     #else
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
