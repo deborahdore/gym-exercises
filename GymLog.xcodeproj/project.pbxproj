@@ -15,6 +15,8 @@
 		894CFD95F69436EFC7B44465 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5965F530C93C94AD04EE4DB3 /* Store.swift */; };
 		8963E36C78E743C1CF259439 /* GymLogWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 138B3960F9FD020E3F9E8260 /* GymLogWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9061739DD3E0195BB2509279 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012A6EB9BBC923B5CCCAA9E /* WorkoutSession.swift */; };
+		A1C0900000000000000000A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0900000000000000000A1 /* Assets.xcassets */; };
+		A1C0900000000000000000B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0900000000000000000B1 /* Assets.xcassets */; };
 		A89BB79AAA6D272F57AC4E39 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74C2F42898119A02C26568 /* Catalog.swift */; };
 		AACF61F2510FD8A04EA16BD0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE08805033F87A8C029589A /* SwiftUI.framework */; };
 		B1909F435BDE7A159DD4A8B2 /* GymLogWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8DB0D01B8FBB1FCD6D0B6 /* GymLogWidget.swift */; };
@@ -25,8 +27,6 @@
 		DE0417A2368415F4A5CDF6F2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF28D61565BCDAA997F1850 /* Models.swift */; };
 		EA3BFC88B7FCE02165304DC0 /* RoutinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CD997B99CDD9EA82E4F84 /* RoutinesView.swift */; };
 		FE73060F66BDF50EAEAA6616 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF28D61565BCDAA997F1850 /* Models.swift */; };
-		A1C0900000000000000000A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0900000000000000000A1 /* Assets.xcassets */; };
-		A1C0900000000000000000B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0900000000000000000B1 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +84,8 @@
 		79081AA4EC3E3C04631F3BEE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8DE08805033F87A8C029589A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		968CD997B99CDD9EA82E4F84 /* RoutinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesView.swift; sourceTree = "<group>"; };
+		A1C0900000000000000000A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1C0900000000000000000B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA7C599FFA72D0176EFD4531 /* GymLogWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogWatchApp.swift; sourceTree = "<group>"; };
 		CFB3F3E71D85F94251D73855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D5AE91820B78E7732063871E /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
@@ -92,8 +94,6 @@
 		FB74C2F42898119A02C26568 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		FEB6A8996B9051188CAEECFC /* GymLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymLogApp.swift; sourceTree = "<group>"; };
 		FF1DE01E833528FC1C5E9D87 /* GymLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1C0900000000000000000A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A1C0900000000000000000B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +253,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					071FF3AD34E62089B3456D5B = {
 						ProvisioningStyle = Automatic;
@@ -363,7 +363,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GymLogWatch/GymLogWatch.entitlements;
-				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp;
 				SDKROOT = watchos;
@@ -375,7 +374,6 @@
 		3AD235867F70E207FDC55021 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -392,7 +390,6 @@
 		6001F047EC6C888547BC6477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -411,7 +408,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GymLogWatch/GymLogWatch.entitlements;
-				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLogWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deborahdore.GymLog.watchkitapp;
 				SDKROOT = watchos;
@@ -425,7 +421,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLog/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -442,7 +437,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = ZNDB645YBB;
 				INFOPLIST_FILE = GymLog/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -458,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -490,10 +485,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZNDB645YBB;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -514,6 +511,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -525,6 +523,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -557,10 +556,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZNDB645YBB;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -574,6 +575,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

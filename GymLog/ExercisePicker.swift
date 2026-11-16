@@ -22,7 +22,9 @@ struct ExercisePicker: View {
 
     private var shown: [CatalogExercise] {
         catalog.filter {
-            (search.isEmpty || $0.name.localizedCaseInsensitiveContains(search))
+            // The id and the equipment are searched too, so "abduction" or "trx" find their exercises.
+            (search.isEmpty || $0.name.localizedCaseInsensitiveContains(search) || $0.id.localizedCaseInsensitiveContains(search)
+                || $0.equipment.localizedCaseInsensitiveContains(search))
                 && (muscle == "All" || $0.muscle == muscle)
                 && (kind == "All" || $0.kind == kind)
         }
@@ -52,12 +54,27 @@ struct ExercisePicker: View {
             }
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
             .safeAreaInset(edge: .top, spacing: 0) { filters }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if !picked.isEmpty {
+                    Button {
+                        add(picked)
+                        dismiss()
+                    } label: {
+                        Label(picked.count == 1 ? "Add 1 exercise" : "Add \(picked.count) exercises", systemImage: "checkmark")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding()
+                    .background(.bar)
+                }
+            }
             .navigationTitle("Add exercises")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(picked.isEmpty ? "Add" : "Add \(picked.count)") {
+                    Button("Add", systemImage: "checkmark") {
                         add(picked)
                         dismiss()
                     }

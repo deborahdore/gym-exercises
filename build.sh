@@ -2,6 +2,8 @@
 # Generates the Xcode project and compiles everything for the simulator (no signing needed).
 # The full output goes to build.log.
 cd "$(dirname "$0")"
+# xcodebuild needs the full Xcode, also when xcode-select points to the Command Line Tools.
+xcodebuild -version >/dev/null 2>&1 || export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 {
     command -v xcodegen >/dev/null || brew install xcodegen
     xcodegen && xcodebuild -project GymLog.xcodeproj -scheme GymLog \

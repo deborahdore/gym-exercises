@@ -58,6 +58,7 @@ struct RoutinesView: View {
 }
 
 struct RoutineEditor: View {
+    @Environment(\.dismiss) private var dismiss
     @Binding var routine: Routine
     @State private var picking = false
 
@@ -92,6 +93,10 @@ struct RoutineEditor: View {
                                 Text(exercise.name.isEmpty ? "New exercise" : exercise.name)
                                 Text("\(exercise.target) · \(exercise.load) · rest \(clock(exercise.rest))")
                                     .font(.subheadline).foregroundStyle(.secondary)
+                                if let notes = exercise.notes {
+                                    Label(notes, systemImage: "note.text")
+                                        .font(.footnote).foregroundStyle(.secondary).lineLimit(2)
+                                }
                             }
                         }
                     }
@@ -106,13 +111,20 @@ struct RoutineEditor: View {
         }
         .navigationTitle(routine.name.isEmpty ? "New routine" : routine.name)
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar { EditButton() }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) { EditButton() }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Done", systemImage: "checkmark") { dismiss() }
+            }
+        }
     }
 }
 
 struct ExerciseEditor: View {
     @Environment(Store.self) private var store
+    @Environment(\.dismiss) private var dismiss
     @Binding var exercise: Exercise
+    @FocusState private var typing: Int?
 
     var body: some View {
         Form {
@@ -123,10 +135,17 @@ struct ExerciseEditor: View {
                 .listRowBackground(Color.clear)
             }
             Section {
-                TextField("Name, e.g. Bench press", text: $exercise.name)
+                TextField("Name, e.g. Bench press", text: $exercise.name).focused($typing, equals: 0)
                 if let last = store.data.log.last(where: { $0.exerciseID == exercise.id }) {
                     LabeledContent("Last workout", value: "\(last.target) · \(last.weight.formatted()) kg · \(last.date.formatted(date: .abbreviated, time: .omitted))")
                 }
+            }
+            Section("Notes") {
+                TextField("e.g. seat on 4, wide grip, slow on the way down",
+                          text: Binding(get: { exercise.notes ?? "" }, set: { exercise.notes = $0.isEmpty ? nil : $0 }),
+                          axis: .vertical)
+                    .lineLimit(2...8)
+                    .focused($typing, equals: 1)
             }
             Section("Sets") {
                 Stepper("\(exercise.sets) sets", value: $exercise.sets, in: 1...20)
@@ -139,7 +158,7 @@ struct ExerciseEditor: View {
             }
             Section("Weight") {
                 HStack {
-                    TextField("0", value: $exercise.weight, format: .number).keyboardType(.decimalPad)
+                    TextField("0", value: $exercise.weight, format: .number).keyboardType(.decimalPad).focused($typing, equals: 2)
                     Text("kg").foregroundStyle(.secondary)
                     Stepper("Weight", value: $exercise.weight, in: 0...500, step: 2.5).labelsHidden()
                 }
@@ -150,5 +169,15 @@ struct ExerciseEditor: View {
         }
         .navigationTitle(exercise.name.isEmpty ? "New exercise" : exercise.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Done", systemImage: "checkmark") { dismiss() }
+            }
+            // The weight keypad has no return key, so it needs its own way to close.
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") { typing = nil }.bold()
+            }
+        }
     }
 }

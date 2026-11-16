@@ -32,8 +32,10 @@ private func x(_ id: String, _ name: String, _ muscle: String, _ equipment: Stri
 
 let catalog: [CatalogExercise] = [
     x("bench_press", "Bench Press", "Chest", "Barbell"),
+    x("incline_bench_press", "Incline Bench Press", "Chest", "Barbell"),
     x("incline_dumbbell_press", "Incline Dumbbell Press", "Chest", "Dumbbell"),
     x("dumbbell_fly", "Dumbbell Fly", "Chest", "Dumbbell"),
+    x("dumbbell_pullover", "Dumbbell Pullover", "Chest", "Dumbbell"),
     x("chest_press_machine", "Chest Press Machine", "Chest", "Machine"),
     x("pec_deck", "Pec Deck", "Chest", "Machine"),
     x("cable_crossover", "Cable Crossover", "Chest", "Cable"),
@@ -41,54 +43,89 @@ let catalog: [CatalogExercise] = [
     x("dip", "Dip", "Chest", "Bodyweight"),
 
     x("pull_up", "Pull-Up", "Back", "Bodyweight"),
+    x("chin_up", "Chin-Up", "Back", "Bodyweight"),
+    x("inverted_row", "Inverted Row", "Back", "Bodyweight"),
+    x("assisted_pull_up", "Assisted Pull-Up", "Back", "Machine"),
     x("lat_pulldown", "Lat Pulldown", "Back", "Machine"),
+    x("machine_row", "Machine Row", "Back", "Machine"),
     x("seated_cable_row", "Seated Cable Row", "Back", "Cable"),
+    x("straight_arm_pulldown", "Straight-Arm Pulldown", "Back", "Cable"),
     x("barbell_row", "Barbell Row", "Back", "Barbell"),
     x("dumbbell_row", "Dumbbell Row", "Back", "Dumbbell"),
     x("deadlift", "Deadlift", "Back", "Barbell"),
+    x("sumo_deadlift", "Sumo Deadlift", "Back", "Barbell"),
     x("back_extension", "Back Extension", "Back", "Bodyweight"),
+    x("superman", "Superman", "Back", "Bodyweight", 30),
 
     x("overhead_press", "Overhead Press", "Shoulders", "Barbell"),
     x("dumbbell_shoulder_press", "Dumbbell Shoulder Press", "Shoulders", "Dumbbell"),
+    x("arnold_press", "Arnold Press", "Shoulders", "Dumbbell"),
     x("shoulder_press_machine", "Shoulder Press Machine", "Shoulders", "Machine"),
     x("lateral_raise", "Lateral Raise", "Shoulders", "Dumbbell"),
+    x("cable_lateral_raise", "Cable Lateral Raise", "Shoulders", "Cable"),
     x("front_raise", "Front Raise", "Shoulders", "Dumbbell"),
+    x("rear_delt_fly", "Rear Delt Fly", "Shoulders", "Dumbbell"),
+    x("shrug", "Shrug", "Shoulders", "Dumbbell"),
     x("face_pull", "Face Pull", "Shoulders", "Cable"),
 
     x("barbell_curl", "Barbell Curl", "Arms", "Barbell"),
     x("dumbbell_curl", "Dumbbell Curl", "Arms", "Dumbbell"),
     x("hammer_curl", "Hammer Curl", "Arms", "Dumbbell"),
     x("preacher_curl", "Preacher Curl", "Arms", "Barbell"),
+    x("concentration_curl", "Concentration Curl", "Arms", "Dumbbell"),
+    x("cable_curl", "Cable Curl", "Arms", "Cable"),
     x("triceps_pushdown", "Triceps Pushdown", "Arms", "Cable"),
     x("overhead_triceps_extension", "Overhead Triceps Extension", "Arms", "Dumbbell"),
     x("skull_crusher", "Skull Crusher", "Arms", "Barbell"),
     x("bench_dip", "Bench Dip", "Arms", "Bodyweight"),
 
     x("squat", "Squat", "Legs", "Barbell"),
+    x("front_squat", "Front Squat", "Legs", "Barbell"),
+    x("goblet_squat", "Goblet Squat", "Legs", "Dumbbell"),
+    x("smith_machine_squat", "Smith Machine Squat", "Legs", "Machine"),
+    x("hack_squat", "Hack Squat", "Legs", "Machine"),
     x("leg_press", "Leg Press", "Legs", "Machine"),
     x("leg_extension", "Leg Extension", "Legs", "Machine"),
     x("leg_curl", "Leg Curl", "Legs", "Machine"),
     x("lunge", "Lunge", "Legs", "Dumbbell"),
     x("bulgarian_split_squat", "Bulgarian Split Squat", "Legs", "Dumbbell"),
+    x("step_up", "Step-Up", "Legs", "Bodyweight"),
+    x("wall_sit", "Wall Sit", "Legs", "Bodyweight", 45),
     x("romanian_deadlift", "Romanian Deadlift", "Legs", "Barbell"),
     x("hip_thrust", "Hip Thrust", "Legs", "Barbell"),
-    x("hip_abduction_machine", "Hip Abduction Machine", "Legs", "Machine"),
+    x("glute_bridge", "Glute Bridge", "Legs", "Bodyweight"),
+    x("hip_abduction_machine", "Abductor Machine", "Legs", "Machine"),
+    x("hip_adduction_machine", "Adductor Machine", "Legs", "Machine"),
     x("calf_raise", "Calf Raise", "Legs", "Dumbbell"),
-    x("goblet_squat", "Goblet Squat", "Legs", "Dumbbell"),
+    x("seated_calf_raise", "Seated Calf Raise", "Legs", "Machine"),
     x("cable_kickback", "Cable Kickback", "Legs", "Cable"),
 
     x("plank", "Plank", "Core", "Bodyweight", 45),
     x("side_plank", "Side Plank", "Core", "Bodyweight", 30),
     x("crunch", "Crunch", "Core", "Bodyweight"),
+    x("bicycle_crunch", "Bicycle Crunch", "Core", "Bodyweight"),
+    x("leg_raise", "Leg Raise", "Core", "Bodyweight"),
+    x("dead_bug", "Dead Bug", "Core", "Bodyweight"),
     x("hanging_leg_raise", "Hanging Leg Raise", "Core", "Bodyweight"),
     x("russian_twist", "Russian Twist", "Core", "Dumbbell"),
     x("cable_crunch", "Cable Crunch", "Core", "Cable"),
+    x("ab_wheel", "Ab Wheel Rollout", "Core", "Bodyweight"),
     x("mountain_climber", "Mountain Climber", "Core", "Bodyweight", 30),
+
+    x("trx_chest_press", "TRX Chest Press", "Chest", "TRX"),
+    x("trx_row", "TRX Row", "Back", "TRX"),
+    x("trx_y_raise", "TRX Y-Raise", "Shoulders", "TRX"),
+    x("trx_biceps_curl", "TRX Biceps Curl", "Arms", "TRX"),
+    x("trx_triceps_extension", "TRX Triceps Extension", "Arms", "TRX"),
+    x("trx_squat", "TRX Squat", "Legs", "TRX"),
+    x("trx_plank", "TRX Plank", "Core", "TRX", 30),
 ]
 
 // Reads a figure from the device, or fetches it from GitHub the first time.
 func figure(_ id: String) async -> UIImage? {
-    let folder = URL.applicationSupportDirectory.appending(path: "figures")
+    // The folder name changes when the figures are redrawn, so devices fetch the new ones.
+    let folder = URL.applicationSupportDirectory.appending(path: "figures-2")
+    try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appending(path: "figures"))
     let file = folder.appending(path: "\(id).png")
     if let data = try? Data(contentsOf: file) { return UIImage(data: data) }
     guard let url = URL(string: "https://raw.githubusercontent.com/deborahdore/gym-exercises/main/catalog/images/\(id).png"),
