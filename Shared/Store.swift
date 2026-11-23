@@ -79,6 +79,7 @@ final class Store: NSObject, WCSessionDelegate {
             self.push()
             #else
             self.receive(session.receivedApplicationContext)
+            self.refresh()
             #endif
         }
     }
@@ -102,20 +103,43 @@ final class Store: NSObject, WCSessionDelegate {
     }
 
     private func push() {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .sortedKeys   // stable bytes, so the watch can tell an unchanged context apart
         let session = WCSession.default
-        guard session.activationState == .activated, session.isWatchAppInstalled,
-              let routines = try? encoder.encode(data.routines) else { return }
+        guard session.activationState == .activated, session.isWatchAppInstalled else { return }
         do {
-            try session.updateApplicationContext(["routines": routines])
+            try session.updateApplicationContext(context())
         } catch {
             print("Could not send routines to the watch:", error)
         }
     }
+
+    // The watch asks for the routines when its app opens (see refresh()), so it does not depend
+    // on when the system gets round to delivering the application context.
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
+        DispatchQueue.main.async { replyHandler(self.context()) }
+    }
+
+    private func context() -> [String: Any] {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .sortedKeys   // stable bytes, so the watch can tell an unchanged context apart
+        guard let routines = try? encoder.encode(data.routines) else { return [:] }
+        return ["routines": routines]
+    }
     #else
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
         DispatchQueue.main.async { self.receive(applicationContext) }
+    }
+
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        DispatchQueue.main.async { self.refresh() }
+    }
+
+    // Asks the phone for its current routines; it answers even when its app is in the background.
+    func refresh() {
+        let session = WCSession.default
+        guard session.activationState == .activated, session.isReachable else { return }
+        session.sendMessage(["want": "routines"], replyHandler: { reply in
+            DispatchQueue.main.async { self.receive(reply) }
+        }, errorHandler: { print("Could not ask the phone for routines:", $0) })
     }
 
     // A context already applied is skipped, so a weight changed on the watch is not

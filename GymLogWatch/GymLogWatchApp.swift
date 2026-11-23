@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct GymLogWatchApp: App {
     @State private var store = Store()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -29,6 +30,9 @@ struct GymLogWatchApp: App {
                 .navigationTitle("GymLog")
             }
             .environment(store)
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active { store.refresh() }
         }
     }
 }
