@@ -2,7 +2,7 @@ import SwiftUI
 import WatchKit
 
 struct WorkoutView: View {
-    enum Phase { case work, timing, rest, review, finished }
+    enum Phase { case work, timing, rest, review }
 
     @Environment(Store.self) private var store
     @Environment(\.dismiss) private var dismiss
@@ -19,6 +19,8 @@ struct WorkoutView: View {
     @State private var page = 1              // 0 figure, 1 workout, 2 details
     @State private var editing = false
     @State private var session = WorkoutSession()
+    @State private var askStart = true       // asked when the routine opens
+    @State private var askFinish = false     // asked when going back
 
     init(routine: Routine) {
         _exercises = State(initialValue: routine.exercises)
@@ -29,20 +31,19 @@ struct WorkoutView: View {
     private var circuit: Range<Int> { exercises.circuit(at: index) }
 
     var body: some View {
-        Group {
-            if phase == .finished {
-                main
-            } else {
-                // Swipe left for the figure, right for the details; the middle page runs the workout.
-                TabView(selection: $page) {
-                    ExerciseFigure(id: exercise.catalogID).padding().tag(0)
-                    main.tag(1)
-                    details.tag(2)
-                }
-                .tabViewStyle(.page)
-            }
+        // Swipe left for the figure, right for the details; the middle page runs the workout.
+        TabView(selection: $page) {
+            ExerciseFigure(id: exercise.catalogID).padding().tag(0)
+            main.tag(1)
+            details.tag(2)
         }
+        .tabViewStyle(.page)
+        // Going back ends the workout, so it asks first.
+        .navigationBarBackButtonHidden()
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Back", systemImage: "chevron.backward") { askFinish = true }
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Exercises", systemImage: "list.bullet") { showExercises = true }
             }
@@ -67,7 +68,14 @@ struct WorkoutView: View {
                 store.update(edited)
             }
         }
-        .task { await session.start() }
+        .alert("Start workout?", isPresented: $askStart) {
+            Button("Start") { Task { await session.start() } }
+            Button("Not now", role: .cancel) { dismiss() }
+        }
+        .alert("Finish workout?", isPresented: $askFinish) {
+            Button("Finish") { finish() }
+            Button("Continue", role: .cancel) {}
+        }
         .task(id: end) {
             guard let end else { return }
             try? await Task.sleep(for: .seconds(end.timeIntervalSinceNow))
@@ -120,12 +128,6 @@ struct WorkoutView: View {
                 .labelStyle(.iconOnly)
                 Spacer(minLength: 0)
                 Button("Save") { saveExercise() }.buttonStyle(.borderedProminent).tint(.green)
-
-            case .finished:
-                Image(systemName: "checkmark.circle.fill").font(.largeTitle).foregroundStyle(.green)
-                Text("Workout complete")
-                Spacer(minLength: 0)
-                Button("Close") { dismiss() }
             }
         }
         .padding(.horizontal, 4)
@@ -202,8 +204,17 @@ struct WorkoutView: View {
         if let next = exercises.firstIndex(where: { !done.contains($0.id) }) {
             start(next)
         } else {
-            phase = .finished
-            Task { await session.stop() }
+            // Last exercise done: save the workout to Fitness and go back to the routines.
+            WKInterfaceDevice.current().play(.success)
+            finish()
+        }
+    }
+
+    private func finish() {
+        end = nil
+        Task {
+            await session.stop()
+            dismiss()
         }
     }
 

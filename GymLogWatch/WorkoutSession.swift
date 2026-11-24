@@ -14,9 +14,10 @@ final class WorkoutSession {
         configuration.activityType = .traditionalStrengthTraining
         configuration.locationType = .indoor
         do {
-            try await health.requestAuthorization(
-                toShare: [HKObjectType.workoutType()],
-                read: [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned)])
+            // The builder only saves the samples it may write: without these the workout lands in
+            // Fitness with no calories or heart rate.
+            let samples: Set<HKSampleType> = [HKQuantityType(.activeEnergyBurned), HKQuantityType(.basalEnergyBurned), HKQuantityType(.heartRate)]
+            try await health.requestAuthorization(toShare: samples.union([HKObjectType.workoutType()]), read: samples)
             let session = try HKWorkoutSession(healthStore: health, configuration: configuration)
             let builder = session.associatedWorkoutBuilder()
             builder.dataSource = HKLiveWorkoutDataSource(healthStore: health, workoutConfiguration: configuration)
@@ -34,7 +35,11 @@ final class WorkoutSession {
         self.session = nil
         self.builder = nil
         session.end()
-        try? await builder.endCollection(at: .now)
-        _ = try? await builder.finishWorkout()
+        do {
+            try await builder.endCollection(at: .now)
+            try await builder.finishWorkout()
+        } catch {
+            print("Workout not saved:", error)
+        }
     }
 }
